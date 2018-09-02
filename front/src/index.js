@@ -10,16 +10,14 @@ import {applyMiddleware, combineReducers, createStore} from "redux";
 import {Provider} from 'react-redux';
 
 import Layout from './components/site/index';
-import Search from "./components/search";
+import reducers from './reducers';
 
 const history = createHistory();
 
 const middleware = routerMiddleware(history);
 
 const store = createStore(
-  combineReducers({
-    router: routerReducer
-  }),
+  reducers,
   applyMiddleware(middleware)
 );
 

@@ -2,9 +2,10 @@ import React from 'react';
 import Header from "./header";
 import {pure} from "recompose";
 import {Route, Switch} from "react-router";
-import Search from "../search";
-import Map from '../map';
+import Search from "../../containers/search";
+import Map from '../../containers/map';
 import {Grid, withStyles} from "@material-ui/core";
+import Dialogs from "../../containers/dialogs";
 
 const styles = {
   main: {
@@ -25,6 +26,7 @@ const Layout = pure(({classes}) => (
         </Grid>
       </Grid>
     </main>
+    <Dialogs />
   </div>
 ));
 
