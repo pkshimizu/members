@@ -5,16 +5,16 @@ import SlackImage from '../../images/slack.png';
 import {MoreHoriz, MailOutline} from '@material-ui/icons';
 
 const Search = pure(({talents, openTalentDetailDialog}) => (
-  <Grid container justify="center" spacing="24">
+  <Grid container justify="center" spacing={24}>
     <Grid item xs={4}>
       <TextField fullWidth placeholder="検索したい人の名前や部署名" />
     </Grid>
     <Grid item xs={12}>
-      <Grid container spacing="8">
+      <Grid container spacing={8}>
         {talents.map(talent => (
-          <Grid item xs={2}>
+          <Grid item xs={2} key={`search_talent_${talent.id}`}>
             <Card>
-              <CardMedia component="img" height="140" image={talent.image} />
+              <CardMedia component="img" height="140" src={talent.image} />
               <CardContent>
                 <Typography variant="subheading">{talent.kana}</Typography>
                 <Typography variant="headline">{talent.name}</Typography>
@@ -22,7 +22,7 @@ const Search = pure(({talents, openTalentDetailDialog}) => (
                 <Typography>{talent.department}</Typography>
               </CardContent>
               <CardActions>
-                <IconButton onClick={openTalentDetailDialog}>
+                <IconButton onClick={openTalentDetailDialog(talent.id)}>
                   <MoreHoriz />
                 </IconButton>
                 <IconButton>

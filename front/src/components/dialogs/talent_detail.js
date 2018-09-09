@@ -7,7 +7,7 @@ import SlackImage from '../../images/slack.png';
 
 const TalentDetailDialog = pure(({open, onClose}) => (
   <Dialog open={open} onClose={onClose}>
-    <Grid xs={12}>
+    <Grid item xs={12}>
       <Card>
         <CardMedia component="img" image={Image} />
         <CardContent>

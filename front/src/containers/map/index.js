@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import actions from '../../actions/dialogs';
+import dialogs from '../../actions/dialogs';
+import talents from '../../actions/talents';
 import Map from '../../components/map';
 
 const mapStateToProps = state => ({
@@ -7,8 +8,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  openTalentDetailDialog: () => {
-    dispatch(actions.open('talent_detail', true));
+  openTalentDetailDialog: (talent_id) => {
+    dispatch(talents.select(talent_id));
+    dispatch(dialogs.open('talent_detail', true));
   }
 });
 

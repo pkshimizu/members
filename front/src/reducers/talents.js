@@ -10,7 +10,7 @@ const initState = {
       department: '部署',
       mail: 'mail@compass-e.com',
       slack: 'https://compassedujp.slack.com/team/U5MH6A6CS',
-      image: '',
+      image: 'https://avatars0.githubusercontent.com/u/300403?s=460&v=4',
       seat: {
         x: '30%',
         y: '30%',
@@ -25,7 +25,7 @@ const initState = {
       department: '部署',
       mail: 'mail@compass-e.com',
       slack: 'https://compassedujp.slack.com/team/U5MH6A6CS',
-      image: '',
+      image: 'https://avatars0.githubusercontent.com/u/300403?s=460&v=4',
       seat: {
         x: '30%',
         y: '60%',
@@ -33,6 +33,7 @@ const initState = {
       status: 'outsourcing'
     },
   ],
+  selected_talent: null,
 };
 
 const success = (key) => key + '_SUCCESS';
@@ -44,6 +45,8 @@ export default (state = initState, action) => {
   switch (action.type) {
     case success(actionTypes.LOAD):
       return { ...state, talents: action.payload.data };
+    case actionTypes.SELECT:
+      return { ...state, selected_talent: action.payload.talent_id };
     default:
       return state;
   }
