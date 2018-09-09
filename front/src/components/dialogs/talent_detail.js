@@ -8,7 +8,7 @@ const TalentDetailDialog = pure(({talent, open, onClose}) => (
   <Dialog open={open} onClose={onClose}>
     <Grid item xs={12}>
       <Card>
-        <CardMedia component="img" image={talent.image} />
+        <CardMedia component="img" image={talent.photo} />
         <CardContent>
           <Typography variant="subheading">{talent.kana}</Typography>
           <Typography variant="headline">{talent.name}</Typography>

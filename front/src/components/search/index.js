@@ -14,7 +14,7 @@ const Search = pure(({talents, openTalentDetailDialog}) => (
         {talents.map(talent => (
           <Grid item xs={2} key={`search_talent_${talent.id}`}>
             <Card>
-              <CardMedia component="img" height="140" src={talent.image} />
+              <CardMedia component="img" src={talent.photo} />
               <CardContent>
                 <Typography variant="subheading">{talent.kana}</Typography>
                 <Typography variant="headline">{talent.name}</Typography>
