@@ -25,7 +25,7 @@ const Map = pure(({classes, talents, openTalentDetailDialog}) => (
       <TextField fullWidth placeholder="検索したい人の名前" />
     </Grid>
     <Grid item xs={12} className={classes.area}>
-      <img src={FloorImage} width="100%"/>
+      <img src={FloorImage} width="100%" alt="floor map"/>
       {talents.map(talent => (
         <Button
           className={classes.seat}

@@ -18,7 +18,7 @@ const TalentDetailDialog = pure(({open, onClose}) => (
             <MailOutline />
           </IconButton>
           <IconButton>
-            <img width="24px" height="24px" src={SlackImage} />
+            <img style={{width: "24px", height: "24px"}} src={SlackImage} alt="slack icon" />
           </IconButton>
         </CardContent>
       </Card>

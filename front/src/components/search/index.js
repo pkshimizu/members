@@ -25,12 +25,16 @@ const Search = pure(({talents, openTalentDetailDialog}) => (
                 <IconButton onClick={openTalentDetailDialog}>
                   <MoreHoriz />
                 </IconButton>
-                <a href={'mailto:' + talent.mail} target="_blank">
-                  <MailOutline />
-                </a>
-                <a href={talent.slack} target="_blank">
-                  <img width="24px" height="24px" src={SlackImage} />
-                </a>
+                <IconButton>
+                  <a href={'mailto:' + talent.mail} target="_blank">
+                    <MailOutline />
+                  </a>
+                </IconButton>
+                <IconButton>
+                  <a href={talent.slack} target="_blank">
+                    <img width="24px" height="24px" src={SlackImage} alt="slack icon"/>
+                  </a>
+                </IconButton>
               </CardActions>
             </Card>
           </Grid>
