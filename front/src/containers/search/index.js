@@ -3,6 +3,7 @@ import actions from '../../actions/dialogs';
 import Search from '../../components/search';
 
 const mapStateToProps = state => ({
+  talents: state.talents.talents
 });
 
 const mapDispatchToProps = dispatch => ({

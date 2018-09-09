@@ -3,6 +3,7 @@ import actions from '../../actions/dialogs';
 import Map from '../../components/map';
 
 const mapStateToProps = state => ({
+  talents: state.talents.talents,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,37 +1,36 @@
 import React from 'react';
 import {pure} from "recompose";
 import {Card, CardActions, CardContent, CardMedia, Grid, IconButton, TextField, Typography} from "@material-ui/core";
-import Image from '../../images/member_sample.jpg';
 import SlackImage from '../../images/slack.png';
 import {MoreHoriz, MailOutline} from '@material-ui/icons';
 
-const Search = pure(({openTalentDetailDialog}) => (
+const Search = pure(({talents, openTalentDetailDialog}) => (
   <Grid container justify="center" spacing="24">
     <Grid item xs={4}>
       <TextField fullWidth placeholder="検索したい人の名前や部署名" />
     </Grid>
     <Grid item xs={12}>
       <Grid container spacing="8">
-        {Array(10).fill(0).map(() => (
+        {talents.map(talent => (
           <Grid item xs={2}>
             <Card>
-              <CardMedia component="img" height="140" image={Image} />
+              <CardMedia component="img" height="140" image={talent.image} />
               <CardContent>
-                <Typography variant="subheading">しめい</Typography>
-                <Typography variant="headline">氏名</Typography>
-                <Typography>役職</Typography>
-                <Typography>部署</Typography>
+                <Typography variant="subheading">{talent.kana}</Typography>
+                <Typography variant="headline">{talent.name}</Typography>
+                <Typography>{talent.position}</Typography>
+                <Typography>{talent.department}</Typography>
               </CardContent>
               <CardActions>
                 <IconButton onClick={openTalentDetailDialog}>
                   <MoreHoriz />
                 </IconButton>
-                <IconButton>
+                <a href={'mailto:' + talent.mail} target="_blank">
                   <MailOutline />
-                </IconButton>
-                <IconButton>
+                </a>
+                <a href={talent.slack} target="_blank">
                   <img width="24px" height="24px" src={SlackImage} />
-                </IconButton>
+                </a>
               </CardActions>
             </Card>
           </Grid>
