@@ -8,6 +8,7 @@
     "axios": "^0.18.0",
     "flow-bin": "^0.78.0",
     "history": "^4.7.2",
+    "lodash": "^4.17.10",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
