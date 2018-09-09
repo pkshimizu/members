@@ -5,12 +5,21 @@ import './index.css';
 import {Route} from 'react-router';
 
 import createHistory from 'history/createBrowserHistory';
-import {ConnectedRouter, routerMiddleware, routerReducer} from "react-router-redux";
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {ConnectedRouter, routerMiddleware} from "react-router-redux";
+import {applyMiddleware, createStore} from "redux";
 import {Provider} from 'react-redux';
 
-import Layout from './components/site/index';
+import Layout from './containers/site/index';
 import reducers from './reducers';
+
+import axios from 'axios';
+import axiosMiddleware from 'redux-axios-middleware';
+
+import logger from 'redux-logger';
+
+const client = axios.create({
+  responseType: 'json',
+});
 
 const history = createHistory();
 
@@ -18,7 +27,11 @@ const middleware = routerMiddleware(history);
 
 const store = createStore(
   reducers,
-  applyMiddleware(middleware)
+  applyMiddleware(
+    middleware,
+    axiosMiddleware(client),
+    logger,
+  )
 );
 
 ReactDOM.render(

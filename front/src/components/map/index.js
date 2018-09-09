@@ -19,17 +19,23 @@ const styles = {
   },
 };
 
-const Map = pure(({classes, openTalentDetailDialog}) => (
-  <Grid container justify="center" spacing="24">
+const Map = pure(({classes, talents, openTalentDetailDialog}) => (
+  <Grid container justify="center" spacing={24}>
     <Grid item xs={4}>
       <TextField fullWidth placeholder="検索したい人の名前" />
     </Grid>
     <Grid item xs={12} className={classes.area}>
-      <img src={FloorImage} width="100%"/>
-      <Button className={classes.seat} style={{top: "22%", left: "28%", backgroundColor: "#ffa"}} onClick={openTalentDetailDialog}>清水 健司</Button>
-      <Button className={classes.seat} style={{top: "22%", left: "12%", backgroundColor: "#ffa"}} onClick={openTalentDetailDialog}>ながーい なまーえ</Button>
-      <Button className={classes.seat} style={{top: "36%", left: "12%", backgroundColor: "#ffa"}} onClick={openTalentDetailDialog}>すずき</Button>
-      <Button className={classes.seat} style={{top: "36%", left: "28%", backgroundColor: "#ffa"}} onClick={openTalentDetailDialog}>こんどう</Button>
+      <img src={FloorImage} width="100%" alt="floor map"/>
+      {talents.map(talent => (
+        <Button
+          key={`map_seat_${talent.id}`}
+          className={classes.seat}
+          style={{top: `${talent.seatY}%`, left: `${talent.seatX}%`, backgroundColor: "#ffa"}}
+          onClick={openTalentDetailDialog(talent.id)}
+        >
+          {talent.name}
+        </Button>
+      ))}
     </Grid>
   </Grid>
 ));

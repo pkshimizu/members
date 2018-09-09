@@ -1,24 +1,28 @@
 import React from 'react';
 import {pure} from "recompose";
 import {Card, CardMedia, CardContent, Dialog, IconButton, Grid, Typography} from "@material-ui/core";
-import Image from '../../images/member_sample.jpg';
 import {MailOutline} from '@material-ui/icons';
 import SlackImage from '../../images/slack.png';
 
-const TalentDetailDialog = pure(({open, onClose}) => (
+const TalentDetailDialog = pure(({talent, open, onClose}) => (
   <Dialog open={open} onClose={onClose}>
-    <Grid xs={12}>
+    <Grid item xs={12}>
       <Card>
-        <CardMedia component="img" image={Image} />
+        <CardMedia component="img" image={talent.photo} />
         <CardContent>
-          <Typography variant="headline">氏名</Typography>
-          <Typography>役職</Typography>
-          <Typography>部署</Typography>
+          <Typography variant="subheading">{talent.kana}</Typography>
+          <Typography variant="headline">{talent.name}</Typography>
+          <Typography>{talent.position}</Typography>
+          <Typography>{talent.department}</Typography>
           <IconButton>
-            <MailOutline />
+            <a href={'mailto:' + talent.mail} target="_blank">
+              <MailOutline />
+            </a>
           </IconButton>
           <IconButton>
-            <img width="24px" height="24px" src={SlackImage} />
+            <a href={talent.slack} target="_blank">
+              <img style={{width: "24px", height: "24px"}} src={SlackImage} alt="slack icon" />
+            </a>
           </IconButton>
         </CardContent>
       </Card>

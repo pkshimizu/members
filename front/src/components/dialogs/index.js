@@ -1,6 +1,6 @@
 import React from 'react';
 import {pure} from "recompose";
-import TalentDetailDialog from "./talent_detail";
+import TalentDetailDialog from "../../containers/dialogs/talent_detail";
 
 const Dialogs = pure(({state, openDialog}) => (
   <div>

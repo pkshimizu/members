@@ -18,7 +18,7 @@ const Layout = pure(({classes}) => (
     <Header />
     <main className={classes.main}>
       <Grid container justify="center">
-        <Grid xs={10}>
+        <Grid item xs={10}>
           <Switch>
             <Route exact path="/" component={Search} />
             <Route path="/map" component={Map} />
