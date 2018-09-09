@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  openTalentDetailDialog: (talent_id) => {
+  openTalentDetailDialog: (talent_id) => () => {
     dispatch(talents.select(talent_id));
     dispatch(dialogs.open('talent_detail', true));
   }

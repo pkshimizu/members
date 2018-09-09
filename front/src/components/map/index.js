@@ -31,7 +31,7 @@ const Map = pure(({classes, talents, openTalentDetailDialog}) => (
           key={`map_seat_${talent.id}`}
           className={classes.seat}
           style={{top: talent.seat.y, left: talent.seat.x, backgroundColor: "#ffa"}}
-          onClick={openTalentDetailDialog}
+          onClick={openTalentDetailDialog(talent.id)}
         >
           {talent.name}
         </Button>
