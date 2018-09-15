@@ -7,18 +7,18 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadTalents: () => {
-    dispatch(actions.load());
-  }
+    loadTalents: () => {
+        dispatch(actions.load());
+    }
 });
 
 const enhanced = lifecycle({
-  componentDidMount() {
-    this.props.loadTalents();
-  }
+    componentDidMount() {
+        this.props.loadTalents();
+    }
 });
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(enhanced(Site));

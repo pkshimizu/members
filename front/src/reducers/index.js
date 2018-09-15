@@ -5,10 +5,10 @@ import dialog from './dialogs';
 import talents from './talents';
 
 const reducers = combineReducers({
-  routing: routerReducer,
-  form: reduxFormReducer,
-  talents,
-  dialog,
+    routing: routerReducer,
+    form: reduxFormReducer,
+    talents,
+    dialog,
 });
 
 export default reducers;

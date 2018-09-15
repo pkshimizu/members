@@ -1,32 +1,32 @@
 import React from 'react';
-import {AppBar, Button, IconButton, Toolbar, Typography, withStyles} from "@material-ui/core";
-import {AccountCircle} from "@material-ui/icons"
-import {pure} from "recompose";
-import {withRouter} from "react-router";
+import {AppBar, Button, IconButton, Toolbar, Typography, withStyles} from '@material-ui/core';
+import {AccountCircle} from '@material-ui/icons';
+import {pure} from 'recompose';
+import {withRouter} from 'react-router';
 
 const styles = {
-  flex: {
-    flexGrow: 1,
-  }
+    flex: {
+        flexGrow: 1,
+    }
 };
 
 const Header = pure(({classes, history}) => (
-  <header>
-    <AppBar position="fixed">
-      <Toolbar>
-        <Typography variant="title" color="inherit" className={classes.flex}>
-          COMPASS members（仮）
-        </Typography>
-        <Button color="inherit" onClick={() => history.push('/')}>
-          Search
-        </Button>
-        <Button color="inherit" onClick={() => history.push('/map')}>
-          Map
-        </Button>
-        <IconButton color="inherit"><AccountCircle /></IconButton>
-      </Toolbar>
-    </AppBar>
-  </header>
+    <header>
+        <AppBar position="fixed">
+            <Toolbar>
+                <Typography variant="title" color="inherit" className={classes.flex}>
+                  COMPASS members（仮）
+                </Typography>
+                <Button color="inherit" onClick={() => history.push('/')}>
+                  Search
+                </Button>
+                <Button color="inherit" onClick={() => history.push('/map')}>
+                  Map
+                </Button>
+                <IconButton color="inherit"><AccountCircle /></IconButton>
+            </Toolbar>
+        </AppBar>
+    </header>
 ));
 
 export default withStyles(styles)(withRouter(Header));

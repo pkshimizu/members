@@ -4,17 +4,17 @@ import talents from '../../actions/talents';
 import Search from '../../components/search';
 
 const mapStateToProps = state => ({
-  talents: state.talents.talents
+    talents: state.talents.talents
 });
 
 const mapDispatchToProps = dispatch => ({
-  openTalentDetailDialog: (talent_id) => () => {
-    dispatch(talents.select(talent_id));
-    dispatch(dialogs.open('talent_detail', true));
-  }
+    openTalentDetailDialog: (talent_id) => () => {
+        dispatch(talents.select(talent_id));
+        dispatch(dialogs.open('talent_detail', true));
+    }
 });
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Search);
