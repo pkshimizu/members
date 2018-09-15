@@ -283,5 +283,6 @@ pip-selfcheck.json
 
 
 photos/
+floors/
 
 # End of https://www.gitignore.io/api/node,django,python,intellij+iml

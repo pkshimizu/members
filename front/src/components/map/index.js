@@ -1,11 +1,12 @@
 import React from 'react';
 import {pure} from 'recompose';
-import {Button, Grid, TextField, withStyles} from '@material-ui/core';
-import FloorImage from '../../images/map.png';
+import {Button, Grid, List, ListItem, ListItemText, TextField, withStyles} from '@material-ui/core';
 
 const styles = {
     area: {
-        position: 'relative'
+        position: 'relative',
+        minWidth: '640px',
+        maxWidth: '640px',
     },
     seat: {
         position: 'absolute',
@@ -19,23 +20,40 @@ const styles = {
     },
 };
 
-const Map = pure(({classes, talents, openTalentDetailDialog}) => (
+const Map = pure(({classes, floors, selected_floor, selectFloor, openTalentDetailDialog}) => (
     <Grid container justify="center" spacing={24}>
-        <Grid item xs={4}>
-            <TextField fullWidth placeholder="検索したい人の名前" />
+        <Grid item xs={12}>
+            <Grid container justify="center">
+                <Grid item xs={4}>
+                    <TextField fullWidth placeholder="検索したい人の名前" />
+                </Grid>
+            </Grid>
         </Grid>
-        <Grid item xs={12} className={classes.area}>
-            <img src={FloorImage} width="100%" alt="floor map"/>
-            {talents.map(talent => (
-                <Button
-                    key={`map_seat_${talent.id}`}
-                    className={classes.seat}
-                    style={{top: `${talent.seat_y}%`, left: `${talent.seat_x}%`, backgroundColor: '#ffa'}}
-                    onClick={openTalentDetailDialog(talent.id)}
-                >
-                    {talent.name}
-                </Button>
-            ))}
+        <Grid item xs={12}>
+            <Grid container justify="center">
+                <Grid item xs={3}>
+                    <List component="nav">
+                        {floors.map(floor => (
+                            <ListItem button selected={floor.id === selected_floor.id} onClick={() => selectFloor(floor.id)}>
+                                <ListItemText primary={floor.name} />
+                            </ListItem>
+                        ))}
+                    </List>
+                </Grid>
+                <Grid item xs={9} className={classes.area}>
+                    <img src={`/api/floormaps/${selected_floor.id}`} width="100%" alt="floor map"/>
+                    {selected_floor.seats.map(seat => (
+                        <Button
+                            key={`map_seat_${seat.id}`}
+                            className={classes.seat}
+                            style={{top: `${seat.y}%`, left: `${seat.x}%`, backgroundColor: '#ffa'}}
+                            onClick={openTalentDetailDialog(seat.talent.id)}
+                        >
+                            {seat.talent.name}
+                        </Button>
+                    ))}
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 ));

@@ -8,9 +8,7 @@ class Talent(models.Model):
     department = models.CharField(max_length=16, null=False, blank=False, verbose_name='部署')
     mail = models.CharField(max_length=256, null=False, blank=False, verbose_name='メールアドレス')
     slack = models.CharField(max_length=256, null=False, blank=False, verbose_name='Slack URL')
-    photo = models.ImageField(upload_to='photos/')
-    seat_x = models.IntegerField(null=False, verbose_name='座席X座標')
-    seat_y = models.IntegerField(null=False, verbose_name='座席Y座標')
+    photo = models.ImageField(upload_to='photos/', verbose_name='写真')
     classification = models.CharField(max_length=16, null=False, blank=False, verbose_name='雇用区分')
     
     def __unicode__(self):
@@ -21,3 +19,28 @@ class Talent(models.Model):
 
     class Meta:
         db_table = 'talent'
+
+
+class Floor(models.Model):
+    name = models.CharField(max_length=16, null=False, blank=False, verbose_name='フロア名')
+    map = models.ImageField(upload_to='floors/', verbose_name='フロアマップ')
+    
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'floor'
+   
+    
+class Seat(models.Model):
+    name = models.CharField(max_length=8, null=False, blank=False, verbose_name='シート名')
+    floor = models.ForeignKey(Floor, null=False, related_name='seats', on_delete=models.CASCADE, verbose_name='フロア')
+    talent = models.ForeignKey(Talent, null=True, related_name='seats', on_delete=models.SET_NULL, verbose_name='タレント')
+    x = models.IntegerField(null=False, verbose_name='X座標')
+    y = models.IntegerField(null=False, verbose_name='Y座標')
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        db_table = 'seat'
