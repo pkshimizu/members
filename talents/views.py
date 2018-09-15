@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.http import HttpResponse
 from rest_framework import serializers
 from rest_framework.viewsets import ModelViewSet
 
@@ -25,3 +25,8 @@ class TalentSerializer(serializers.ModelSerializer):
 class TalentViewSet(ModelViewSet):
     serializer_class = TalentSerializer
     queryset = Talent.objects
+
+
+def download_photo(request, talent_id):
+    talent = Talent.objects.get(id=talent_id)
+    return HttpResponse(talent.photo.file.read(), content_type='image/jpeg')
