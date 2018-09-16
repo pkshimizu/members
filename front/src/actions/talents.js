@@ -1,6 +1,7 @@
 export const actionTypes = {
     LOAD: 'TALENTS_LOAD',
     SELECT: 'TALENTS_SELECT',
+    SEARCH: 'TALENTS_SEARCH',
 };
 
 const actions = {
@@ -17,6 +18,12 @@ const actions = {
         type: actionTypes.SELECT,
         payload: {
             talent_id
+        }
+    }),
+    search: (keyword) => ({
+        type: actionTypes.SEARCH,
+        payload: {
+            keyword
         }
     })
 };

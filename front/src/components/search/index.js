@@ -1,13 +1,18 @@
 import React from 'react';
 import {pure} from 'recompose';
-import {Card, CardActions, CardContent, CardMedia, Grid, IconButton, TextField, Typography} from '@material-ui/core';
+import {Card, CardActions, CardContent, CardMedia, Grid, IconButton, Typography} from '@material-ui/core';
 import SlackImage from '../../images/slack.png';
 import {MoreHoriz, MailOutline} from '@material-ui/icons';
+import SearchForm from '../../containers/search/form';
 
-const Search = pure(({talents, openTalentDetailDialog}) => (
+const Search = pure(({talents, updateSearchKeyword, openTalentDetailDialog}) => (
     <Grid container justify="center" spacing={24}>
-        <Grid item xs={4}>
-            <TextField fullWidth placeholder="検索したい人の名前や部署名" />
+        <Grid item xs={12}>
+            <Grid container justify="center">
+                <Grid item xs={4}>
+                    <SearchForm />
+                </Grid>
+            </Grid>
         </Grid>
         <Grid item xs={12}>
             <Grid container spacing={8}>
