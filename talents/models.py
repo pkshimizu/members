@@ -4,7 +4,7 @@ from django.db import models
 class Talent(models.Model):
     name = models.CharField(max_length=16, null=False, blank=False, verbose_name='氏名')
     kana = models.CharField(max_length=16, null=False, blank=False, verbose_name='かな')
-    position = models.CharField(max_length=8, null=True, verbose_name='役職')
+    position = models.CharField(max_length=8, null=True, blank=True, verbose_name='役職')
     department = models.CharField(max_length=16, null=False, blank=False, verbose_name='部署')
     mail = models.CharField(max_length=256, null=False, blank=False, verbose_name='メールアドレス')
     slack = models.CharField(max_length=256, null=False, blank=False, verbose_name='Slack URL')
@@ -35,7 +35,7 @@ class Floor(models.Model):
 class Seat(models.Model):
     name = models.CharField(max_length=8, null=False, blank=False, verbose_name='シート名')
     floor = models.ForeignKey(Floor, null=False, related_name='seats', on_delete=models.CASCADE, verbose_name='フロア')
-    talent = models.ForeignKey(Talent, null=True, related_name='seats', on_delete=models.SET_NULL, verbose_name='タレント')
+    talent = models.ForeignKey(Talent, null=True, blank=True, related_name='seats', on_delete=models.SET_NULL, verbose_name='タレント')
     x = models.IntegerField(null=False, verbose_name='X座標')
     y = models.IntegerField(null=False, verbose_name='Y座標')
 

@@ -23,6 +23,7 @@ const styles = {
 };
 
 const select_color = (talent, keyword) => {
+  if (!talent) return '#ffe499';
   if (keyword) {
     if (_.includes(talent.name, keyword)
         || _.includes(talent.kana, keyword)
@@ -67,9 +68,9 @@ const Map = pure(({classes, floors, selected_floor, keyword, selectFloor, openTa
                 left: `${seat.x}%`,
                 backgroundColor: select_color(seat.talent, keyword)
               }}
-              onClick={openTalentDetailDialog(seat.talent.id)}
+              onClick={openTalentDetailDialog(seat.talent)}
             >
-              {seat.talent.name}
+              {seat.talent ? seat.talent.name : seat.name}
             </Button>
           ))}
         </Grid>

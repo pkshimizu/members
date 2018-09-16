@@ -18,9 +18,11 @@ const mapDispatchToProps = dispatch => ({
   selectFloor: (floor_id) => {
     dispatch(floors.select(floor_id));
   },
-  openTalentDetailDialog: (talent_id) => () => {
-    dispatch(talents.select(talent_id));
-    dispatch(dialogs.open('talent_detail', true));
+  openTalentDetailDialog: (talent) => () => {
+    if (talent) {
+      dispatch(talents.select(talent.id));
+      dispatch(dialogs.open('talent_detail', true));
+    }
   }
 });
 
