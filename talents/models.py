@@ -1,6 +1,17 @@
 from django.db import models
 
 
+class EmploymentStatus(models.Model):
+    name = models.CharField(max_length=16, null=False, blank=False, verbose_name='名称')
+    color = models.CharField(max_length=8, null=False, blank=False, verbose_name='カラーコード')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'employment_status'
+
+
 class Talent(models.Model):
     name = models.CharField(max_length=16, null=False, blank=False, verbose_name='氏名')
     kana = models.CharField(max_length=16, null=False, blank=False, verbose_name='かな')
@@ -9,7 +20,7 @@ class Talent(models.Model):
     mail = models.CharField(max_length=256, null=False, blank=False, verbose_name='メールアドレス')
     slack = models.CharField(max_length=256, null=False, blank=False, verbose_name='Slack URL')
     photo = models.ImageField(upload_to='photos/', verbose_name='写真')
-    classification = models.CharField(max_length=16, null=False, blank=False, verbose_name='雇用区分')
+    status = models.ForeignKey(EmploymentStatus, null=True, blank=True, related_name='talents', on_delete=models.SET_NULL, verbose_name='雇用形態')
     
     def __unicode__(self):
         return self.name

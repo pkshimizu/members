@@ -30,7 +30,7 @@ const select_color = (talent, keyword) => {
         || _.includes(talent.department, keyword))
       return '#ff9277';
   }
-  return talent.classification === 'employee' ? '#00cc88' : '#44d5e5';
+  return talent.status ? talent.status.color : '#ffe499';
 };
 
 const Map = pure(({classes, floors, selected_floor, keyword, selectFloor, openTalentDetailDialog}) => (

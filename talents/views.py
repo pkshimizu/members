@@ -2,10 +2,22 @@ from django.http import HttpResponse
 from rest_framework import serializers
 from rest_framework.viewsets import ModelViewSet
 
-from talents.models import Talent, Floor, Seat
+from talents.models import Talent, Floor, Seat, EmploymentStatus
+
+
+class EmploymentStatus(serializers.ModelSerializer):
+    class Meta:
+        model = EmploymentStatus
+        fields = (
+            'id',
+            'name',
+            'color'
+        )
 
 
 class TalentSerializer(serializers.ModelSerializer):
+    status = EmploymentStatus()
+
     class Meta:
         model = Talent
         fields = (
@@ -16,7 +28,7 @@ class TalentSerializer(serializers.ModelSerializer):
             'department',
             'mail',
             'slack',
-            'classification'
+            'status'
         )
 
 
