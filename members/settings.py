@@ -51,6 +51,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# For develop
+MIDDLEWARE.append('talents.middleware.dev_cors_middleware')
+
 ROOT_URLCONF = 'members.urls'
 
 TEMPLATES = [

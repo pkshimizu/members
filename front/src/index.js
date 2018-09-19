@@ -17,6 +17,8 @@ import axiosMiddleware from 'redux-axios-middleware';
 
 import logger from 'redux-logger';
 
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 const client = axios.create({
   responseType: 'json',
 });

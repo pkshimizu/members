@@ -1,7 +1,7 @@
 import React from 'react';
 import {pure} from 'recompose';
 import TalentDetailDialog from '../../containers/dialogs/talent_detail';
-import SelfIntroductionEditDialog from '../../containers/dialogs/self_introduction_edit_dialog';
+import SelfIntroductionEditDialog from '../../containers/dialogs/self_introduction_edit';
 
 const Dialogs = pure(({state, openDialog}) => (
   <div>

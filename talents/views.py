@@ -1,5 +1,7 @@
 from django.http import HttpResponse
-from rest_framework import serializers
+from rest_framework import serializers, status
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from talents.models import Talent, Floor, Seat, EmploymentStatus
@@ -36,6 +38,18 @@ class TalentSerializer(serializers.ModelSerializer):
 class TalentViewSet(ModelViewSet):
     serializer_class = TalentSerializer
     queryset = Talent.objects
+
+    @action(methods=['patch'], detail=True)
+    def self_introduction(self, request, pk=None):
+        talent = Talent.objects.get(id=pk)
+        message = request.data['message']
+        password = request.data['password']
+        if talent.password == password:
+            talent.self_introduction = message
+            talent.save()
+            data = TalentSerializer(talent).data
+            return Response(data, status=status.HTTP_200_OK)
+        return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
 
 
 class SeatSerializer(serializers.ModelSerializer):

@@ -8,6 +8,10 @@ const initState = {
 
 const success = (key) => key + '_SUCCESS';
 
+const updateSelfIntroduction = (talents, action) => {
+  return talents;
+};
+
 export default (state = initState, action) => {
   if (!action.type.startsWith('TALENTS_')) {
     return state;
@@ -19,6 +23,8 @@ export default (state = initState, action) => {
     return { ...state, selected_talent: action.payload.talent_id };
   case actionTypes.SEARCH:
     return { ...state, search_keyword: action.payload.keyword };
+  case success(actionTypes.UPDATE_SELF_INTRODUCTION):
+    return { ...state, talents: updateSelfIntroduction(state.talents, action)};
   default:
     return state;
   }
