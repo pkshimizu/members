@@ -22,24 +22,20 @@ const Search = pure(({talents, updateSearchKeyword, openTalentDetailDialog}) => 
               <CardMedia component="img" src={`/api/photos/${talent.id}`} />
               <CardContent>
                 <Typography variant="subheading">{talent.kana}</Typography>
-                <Typography variant="headline">{talent.name}</Typography>
-                <Typography>{talent.position}</Typography>
-                <Typography>{talent.department}</Typography>
+                <Typography variant="headline" gutterBottom>{talent.name}</Typography>
+                <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.position}</Typography>
+                <Typography variant="subheading">{talent.department}</Typography>
               </CardContent>
               <CardActions>
                 <IconButton onClick={openTalentDetailDialog(talent.id)}>
                   <MoreHoriz />
                 </IconButton>
-                <IconButton>
-                  <a href={'mailto:' + talent.mail} target="_blank">
-                    <MailOutline />
-                  </a>
-                </IconButton>
-                <IconButton>
-                  <a href={talent.slack} target="_blank">
-                    <img width="24px" height="24px" src={SlackImage} alt="slack icon"/>
-                  </a>
-                </IconButton>
+                <a href={'mailto:' + talent.mail} target="_blank">
+                  <MailOutline />
+                </a>
+                <a href={talent.slack} target="_blank">
+                  <img width="24px" height="24px" src={SlackImage} alt="slack icon"/>
+                </a>
               </CardActions>
             </Card>
           </Grid>

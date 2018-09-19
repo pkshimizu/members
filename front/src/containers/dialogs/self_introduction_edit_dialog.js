@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-import actions from '../../actions/dialogs';
-import TalentDetail from '../../components/dialogs/talent_detail';
+import SelfIntroductionEditDetail from '../../components/dialogs/self_introduction_edit_detail';
 import _ from 'lodash';
 
 const mapStateToProps = state => ({
@@ -8,12 +7,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  openSelfIntroductionEditDialog: () => {
-    dispatch(actions.open('self_introduction_edit', true));
-  }
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TalentDetail);
+)(SelfIntroductionEditDetail);

@@ -21,6 +21,8 @@ class Talent(models.Model):
     slack = models.CharField(max_length=256, null=False, blank=False, verbose_name='Slack URL')
     photo = models.ImageField(upload_to='photos/', verbose_name='写真')
     status = models.ForeignKey(EmploymentStatus, null=True, blank=True, related_name='talents', on_delete=models.SET_NULL, verbose_name='雇用形態')
+    self_introduction = models.CharField(max_length=1024, null=True, blank=True, verbose_name='自己紹介文')
+    password = models.CharField(max_length=32, null=True, blank=True, verbose_name='パスワード')
     
     def __unicode__(self):
         return self.name

@@ -2,6 +2,7 @@ import { actionTypes } from '../actions/dialogs';
 
 const initState = {
   talent_detail: false,
+  self_introduction_edit: false,
   error: false,
 };
 
