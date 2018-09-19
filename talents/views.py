@@ -42,8 +42,8 @@ class TalentViewSet(ModelViewSet):
     @action(methods=['patch'], detail=True)
     def self_introduction(self, request, pk=None):
         talent = Talent.objects.get(id=pk)
-        message = request.data['message']
-        password = request.data['password']
+        message = request.data['message'] if 'message' in request.data else None
+        password = request.data['password'] if 'password' in request.data else None
         if talent.password == password:
             talent.self_introduction = message
             talent.save()

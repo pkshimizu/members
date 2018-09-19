@@ -1,7 +1,7 @@
 import React from 'react';
 import {pure} from 'recompose';
-import {Button, Card, CardMedia, CardContent, Dialog, Grid, Typography} from '@material-ui/core';
-import {MailOutline} from '@material-ui/icons';
+import {Card, CardMedia, CardContent, Dialog, IconButton, Grid, Typography} from '@material-ui/core';
+import {Edit, MailOutline} from '@material-ui/icons';
 import SlackImage from '../../images/slack.png';
 
 const TalentDetailDialog = pure(({talent, open, onClose, openSelfIntroductionEditDialog}) => (
@@ -14,7 +14,14 @@ const TalentDetailDialog = pure(({talent, open, onClose, openSelfIntroductionEdi
           <Typography variant="headline" gutterBottom>{talent.name}</Typography>
           <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.position}</Typography>
           <Typography variant="subheading" gutterBottom>{talent.department}</Typography>
-          <Typography>{talent.self_introduction}<Button variant="outlined" onClick={() => openSelfIntroductionEditDialog()}>自己紹介を編集</Button></Typography>
+          <Typography component="pre">
+            {talent.self_introduction}
+            <IconButton
+              onClick={() => openSelfIntroductionEditDialog()}
+            >
+              <Edit/>
+            </IconButton>
+          </Typography>
           <a href={'mailto:' + talent.mail} target="_blank">
             <MailOutline />
           </a>

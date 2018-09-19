@@ -3,6 +3,7 @@ import dialogs from '../../actions/dialogs';
 import talents from '../../actions/talents';
 import Search from '../../components/search';
 import _ from 'lodash';
+import {lifecycle} from 'recompose';
 
 const filter = (talents, keyword) => {
   if (!keyword) return talents;
@@ -18,13 +19,22 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  loadTalents: () => {
+    dispatch(talents.load());
+  },
   openTalentDetailDialog: (talent_id) => () => {
     dispatch(talents.select(talent_id));
     dispatch(dialogs.open('talent_detail', true));
   }
 });
 
+const enhanced = lifecycle({
+  componentDidMount() {
+    this.props.loadTalents();
+  }
+});
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Search);
+)(enhanced(Search));

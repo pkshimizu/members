@@ -1,4 +1,5 @@
 import { actionTypes } from '../actions/talents';
+import _ from 'lodash';
 
 const initState = {
   talents: [],
@@ -9,7 +10,11 @@ const initState = {
 const success = (key) => key + '_SUCCESS';
 
 const updateSelfIntroduction = (talents, action) => {
-  return talents;
+  const talent = action.payload.data
+  return _.map(talents, (t) => {
+    if (t.id === talent.id) return talent;
+    return t;
+  });
 };
 
 export default (state = initState, action) => {
