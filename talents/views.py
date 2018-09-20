@@ -37,7 +37,7 @@ class TalentSerializer(serializers.ModelSerializer):
 
 class TalentViewSet(ModelViewSet):
     serializer_class = TalentSerializer
-    queryset = Talent.objects
+    queryset = Talent.objects.order_by('kana')
 
     @action(methods=['patch'], detail=True)
     def self_introduction(self, request, pk=None):

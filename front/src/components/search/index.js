@@ -31,10 +31,14 @@ const Search = pure(({talents, updateSearchKeyword, openTalentDetailDialog}) => 
                   <MoreHoriz />
                 </IconButton>
                 <a href={'mailto:' + talent.mail} target="_blank">
-                  <MailOutline />
+                  <IconButton>
+                    <MailOutline />
+                  </IconButton>
                 </a>
                 <a href={talent.slack} target="_blank">
-                  <img width="24px" height="24px" src={SlackImage} alt="slack icon"/>
+                  <IconButton>
+                    <img width="24px" height="24px" src={SlackImage} alt="slack icon"/>
+                  </IconButton>
                 </a>
               </CardActions>
             </Card>
