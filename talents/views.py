@@ -85,7 +85,12 @@ class FloorViewSet(ModelViewSet):
 
 def download_photo(request, talent_id):
     talent = Talent.objects.get(id=talent_id)
-    return HttpResponse(talent.photo.file.read(), content_type='image/jpeg')
+    if talent is None or talent.photo.name is '':
+        return HttpResponse(open('talents/nophoto.jpg', 'rb'), content_type='image/jpeg')
+    try:
+        return HttpResponse(talent.photo.file.read(), content_type='image/jpeg')
+    except Exception:
+        return HttpResponse(open('talents/nophoto.jpg', 'rb'), content_type='image/jpeg')
 
 
 def download_floor_map(request, floor_id):
