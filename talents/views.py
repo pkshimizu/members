@@ -49,7 +49,7 @@ class TalentViewSet(ModelViewSet):
             talent.save()
             data = TalentSerializer(talent).data
             return Response(data, status=status.HTTP_200_OK)
-        return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
+        return Response({'message': 'パスワードが正しくありません'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class SeatSerializer(serializers.ModelSerializer):

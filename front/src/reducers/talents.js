@@ -10,7 +10,7 @@ const initState = {
 const success = (key) => key + '_SUCCESS';
 
 const updateSelfIntroduction = (talents, action) => {
-  const talent = action.payload.data
+  const talent = action.payload.data;
   return _.map(talents, (t) => {
     if (t.id === talent.id) return talent;
     return t;
