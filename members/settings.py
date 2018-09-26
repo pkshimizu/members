@@ -81,8 +81,8 @@ WSGI_APPLICATION = 'members.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'members',
-        'HOST': 'localhost',
+        'NAME': os.environ['DB_TABLENAME'],
+        'HOST': os.environ['DB_HOSTNAME'],
         'USER': os.environ['DB_USERNAME'],
         'PASSWORD': os.environ['DB_PASSWORD'],
     }
