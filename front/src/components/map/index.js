@@ -7,8 +7,6 @@ import _ from 'lodash';
 const styles = {
   area: {
     position: 'relative',
-    minWidth: '640px',
-    maxWidth: '640px',
   },
   seat: {
     position: 'absolute',
@@ -57,7 +55,7 @@ const Map = pure(({classes, floors, selected_floor, keyword, selectFloor, openTa
             ))}
           </List>
         </Grid>
-        <Grid item xs={9} className={classes.area}>
+        <Grid item xs={9} className={classes.area} style={{minWidth: `${selected_floor.width}px`, maxWidth: `${selected_floor.width}px`}}>
           <img src={`/api/floormaps/${selected_floor.id}`} width="100%" alt="floor map"/>
           {selected_floor.seats.map(seat => (
             <Button

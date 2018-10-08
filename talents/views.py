@@ -74,6 +74,7 @@ class FloorSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'name',
+            'width',
             'seats',
         )
 

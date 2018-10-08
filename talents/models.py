@@ -37,6 +37,7 @@ class Talent(models.Model):
 class Floor(models.Model):
     name = models.CharField(max_length=16, null=False, blank=False, verbose_name='フロア名')
     map = models.ImageField(upload_to='floors/', verbose_name='フロアマップ')
+    width = models.IntegerField(null=False, default=640, verbose_name='幅（ピクセル）')
     
     def __str__(self):
         return self.name
