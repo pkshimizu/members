@@ -25,7 +25,7 @@ SECRET_KEY = '@&9kwu_o=!3e(+)om9(!c1=*c4fl1)&ai=pjtd4cmejj)7=bs8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.250.2.62', 'localhost']
+ALLOWED_HOSTS = ['10.250.2.62', 'members.compass-edu.meguro', 'localhost']
 
 
 # Application definition
