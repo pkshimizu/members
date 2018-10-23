@@ -1,7 +1,7 @@
 import React from 'react';
 import {pure} from 'recompose';
 import {Card, CardMedia, CardContent, Dialog, IconButton, Grid, Typography} from '@material-ui/core';
-import {Edit, MailOutline, Phone} from '@material-ui/icons';
+import {Edit, MailOutline, Phone, Today} from '@material-ui/icons';
 import SlackImage from '../../images/slack.png';
 
 const phoneText = (talent) => {
@@ -30,6 +30,11 @@ const TalentDetailDialog = pure(({talent, open, onClose, openSelfIntroductionEdi
               <Edit/>
             </IconButton>
           </Typography>
+          <a href={`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(talent.mail)}&ctz=Asia%2FTokyo`} target="_blank">
+            <IconButton>
+              <Today />
+            </IconButton>
+          </a>
           <a href={'mailto:' + talent.mail} target="_blank">
             <IconButton>
               <MailOutline />

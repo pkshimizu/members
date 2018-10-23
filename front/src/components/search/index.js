@@ -2,7 +2,7 @@ import React from 'react';
 import {pure} from 'recompose';
 import {Card, CardActions, CardContent, CardMedia, Grid, IconButton, Typography} from '@material-ui/core';
 import SlackImage from '../../images/slack.png';
-import {MoreHoriz, MailOutline} from '@material-ui/icons';
+import {MoreHoriz, MailOutline, Today} from '@material-ui/icons';
 import SearchForm from '../../containers/search/form';
 
 const Search = pure(({talents, updateSearchKeyword, openTalentDetailDialog}) => (
@@ -17,7 +17,7 @@ const Search = pure(({talents, updateSearchKeyword, openTalentDetailDialog}) => 
     <Grid item xs={12}>
       <Grid container spacing={8}>
         {talents.map(talent => (
-          <Grid item xs={6} sm={6} md={4} lg={2} key={`search_talent_${talent.id}`}>
+          <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={`search_talent_${talent.id}`}>
             <Card>
               <CardMedia component="img" src={`/api/photos/${talent.id}`} />
               <CardContent>
@@ -30,6 +30,11 @@ const Search = pure(({talents, updateSearchKeyword, openTalentDetailDialog}) => 
                 <IconButton onClick={openTalentDetailDialog(talent.id)}>
                   <MoreHoriz />
                 </IconButton>
+                <a href={`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(talent.mail)}&ctz=Asia%2FTokyo`} target="_blank">
+                  <IconButton>
+                    <Today />
+                  </IconButton>
+                </a>
                 <a href={'mailto:' + talent.mail} target="_blank">
                   <IconButton>
                     <MailOutline />
