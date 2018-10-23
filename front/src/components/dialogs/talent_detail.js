@@ -1,8 +1,15 @@
 import React from 'react';
 import {pure} from 'recompose';
 import {Card, CardMedia, CardContent, Dialog, IconButton, Grid, Typography} from '@material-ui/core';
-import {Edit, MailOutline} from '@material-ui/icons';
+import {Edit, MailOutline, Phone} from '@material-ui/icons';
 import SlackImage from '../../images/slack.png';
+
+const phoneText = (talent) => {
+  if (talent.phone) {
+    return (<Typography variant="subheading" gutterBottom><Phone/>{talent.phone}</Typography>);
+  }
+  return (<Typography variant="subheading" gutterBottom></Typography>);
+};
 
 const TalentDetailDialog = pure(({talent, open, onClose, openSelfIntroductionEditDialog}) => (
   <Dialog open={open} onClose={onClose}>
@@ -14,6 +21,7 @@ const TalentDetailDialog = pure(({talent, open, onClose, openSelfIntroductionEdi
           <Typography variant="headline" gutterBottom>{talent.name}</Typography>
           <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.position}</Typography>
           <Typography variant="subheading" gutterBottom>{talent.department}</Typography>
+          {phoneText(talent)}
           <Typography component="pre">
             {talent.self_introduction}
             <IconButton

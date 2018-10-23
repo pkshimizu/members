@@ -30,6 +30,7 @@ class TalentSerializer(serializers.ModelSerializer):
             'department',
             'mail',
             'slack',
+            'phone',
             'status',
             'self_introduction'
         )
