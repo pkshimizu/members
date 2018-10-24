@@ -12,7 +12,7 @@ const phoneText = (talent) => {
 };
 
 const TalentDetailDialog = pure(({talent, open, onClose, openSelfIntroductionEditDialog}) => (
-  <Dialog open={open} onClose={onClose}>
+  <Dialog open={open} onClose={onClose} maxWidth="xs">
     <Grid item xs={12}>
       <Card>
         <CardMedia component="img" src={`/api/photos/${talent.id}`} />

@@ -7,7 +7,7 @@ from talents.models import Talent, Floor, Seat, EmploymentStatus
 
 
 class TalentForm(forms.ModelForm):
-    self_introduction = forms.CharField(widget=forms.Textarea)
+    self_introduction = forms.CharField(widget=forms.Textarea, required=False)
 
     class Meta:
         model = Talent
