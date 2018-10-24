@@ -22,6 +22,7 @@ class Talent(models.Model):
     phone = models.CharField(max_length=16, null=True, blank=True, verbose_name='内線番号')
     photo = models.ImageField(upload_to='photos/', null=True, blank=True, verbose_name='写真')
     status = models.ForeignKey(EmploymentStatus, null=True, blank=True, related_name='talents', on_delete=models.SET_NULL, verbose_name='雇用形態')
+    business = models.CharField(max_length=128, null=True, blank=True, verbose_name='業務内容')
     self_introduction = models.CharField(max_length=1024, null=True, blank=True, verbose_name='自己紹介文')
     password = models.CharField(max_length=32, null=True, blank=True, verbose_name='パスワード')
     

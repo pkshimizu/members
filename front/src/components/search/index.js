@@ -25,6 +25,7 @@ const Search = pure(({talents, updateSearchKeyword, openTalentDetailDialog}) => 
                 <Typography variant="headline" gutterBottom>{talent.name}</Typography>
                 <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.position}</Typography>
                 <Typography variant="subheading">{talent.department}</Typography>
+                <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.business}</Typography>
               </CardContent>
               <CardActions disableActionSpacing={true}>
                 <IconButton onClick={openTalentDetailDialog(talent.id)}>
