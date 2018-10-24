@@ -21,6 +21,7 @@ const TalentDetailDialog = pure(({talent, open, onClose, openSelfIntroductionEdi
           <Typography variant="headline" gutterBottom>{talent.name}</Typography>
           <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.position}</Typography>
           <Typography variant="subheading" gutterBottom>{talent.department}</Typography>
+          <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.business}</Typography>
           {phoneText(talent)}
           <Typography component="pre">
             {talent.self_introduction}
