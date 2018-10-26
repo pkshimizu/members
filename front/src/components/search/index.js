@@ -2,7 +2,7 @@ import React from 'react';
 import {pure} from 'recompose';
 import {Card, CardActions, CardContent, CardMedia, Grid, IconButton, Typography} from '@material-ui/core';
 import SlackImage from '../../images/slack.png';
-import {MoreHoriz, MailOutline, Today} from '@material-ui/icons';
+import {MoreHoriz, MailOutline, Today, AccountCircle} from '@material-ui/icons';
 import SearchForm from '../../containers/search/form';
 
 const Search = pure(({talents, updateSearchKeyword, openTalentDetailDialog}) => (
@@ -21,11 +21,16 @@ const Search = pure(({talents, updateSearchKeyword, openTalentDetailDialog}) => 
             <Card>
               <CardMedia component="img" src={`/api/photos/${talent.id}`} />
               <CardContent>
-                <Typography variant="subheading">{talent.kana}</Typography>
-                <Typography variant="headline" gutterBottom>{talent.name}</Typography>
-                <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.position}</Typography>
-                <Typography variant="subheading">{talent.department}</Typography>
-                <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.business}</Typography>
+                <div style={{overflow: 'hidden'}}>
+                  <AccountCircle style={{float: 'left', width: '25px', color: talent.status.color}}/>
+                  <div style={{overflow: 'hidden'}}>
+                    <Typography variant="subheading">{talent.kana}</Typography>
+                    <Typography variant="headline" gutterBottom>{talent.name}</Typography>
+                    <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.position}</Typography>
+                    <Typography variant="subheading">{talent.department}</Typography>
+                    <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.business}</Typography>
+                  </div>
+                </div>
               </CardContent>
               <CardActions disableActionSpacing={true}>
                 <IconButton onClick={openTalentDetailDialog(talent.id)}>
