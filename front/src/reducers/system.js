@@ -2,9 +2,6 @@ const initState = {
   loading: false,
 };
 
-const success = (key) => key + '_SUCCESS';
-const fail = (key) => key + '_FAIL';
-
 export default (state = initState, action) => {
   if (action.type.endsWith('_SUCCESS') || action.type.endsWith('_FAIL')) {
     return { ...state, loading: false};

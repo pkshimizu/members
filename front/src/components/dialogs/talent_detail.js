@@ -1,8 +1,17 @@
 import React from 'react';
 import {pure} from 'recompose';
-import {Card, CardMedia, CardContent, Dialog, IconButton, Grid, Typography} from '@material-ui/core';
+import {Card, CardMedia, CardContent, Dialog, IconButton, Grid, Paper, Typography, withStyles} from '@material-ui/core';
 import {AccountCircle, Edit, MailOutline, Phone, Today} from '@material-ui/icons';
 import SlackImage from '../../images/slack.png';
+import _ from 'lodash';
+
+const styles = theme => ({
+  introduction: {
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+  }
+});
 
 const phoneText = (talent) => {
   if (talent.phone) {
@@ -11,9 +20,14 @@ const phoneText = (talent) => {
   return (<Typography variant="subheading" gutterBottom></Typography>);
 };
 
-const talentCard = (talent, openSelfIntroductionEditDialog) => {
+const selfIntroductionText = (talent) => {
+  return _.split(talent.self_introduction, /\n/)
+    .map((text, index) => (<span key={`introduction_text_${index}`}>{text}<br /></span>));
+};
+
+const talentCard = (classes, talent, openSelfIntroductionEditDialog) => {
   if(!talent || !talent.status) {
-    return (<Card/>)
+    return (<Card/>);
   }
   return (
     <Card>
@@ -30,14 +44,16 @@ const talentCard = (talent, openSelfIntroductionEditDialog) => {
             {phoneText(talent)}
           </div>
         </div>
-        <Typography component="pre">
-          {talent.self_introduction}
+        <Paper className={classes.introduction}>
+          <Typography>
+            {selfIntroductionText(talent)}
+          </Typography>
           <IconButton
             onClick={() => openSelfIntroductionEditDialog()}
           >
             <Edit/>
           </IconButton>
-        </Typography>
+        </Paper>
         <a href={`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(talent.mail)}&ctz=Asia%2FTokyo`} target="_blank">
           <IconButton>
             <Today />
@@ -58,12 +74,12 @@ const talentCard = (talent, openSelfIntroductionEditDialog) => {
   )
 };
 
-const TalentDetailDialog = pure(({talent, open, onClose, openSelfIntroductionEditDialog}) => (
+const TalentDetailDialog = pure(({classes, talent, open, onClose, openSelfIntroductionEditDialog}) => (
   <Dialog open={open} onClose={onClose} maxWidth="xs">
     <Grid item xs={12}>
-      {talentCard(talent, openSelfIntroductionEditDialog)}
+      {talentCard(classes, talent, openSelfIntroductionEditDialog)}
     </Grid>
   </Dialog>
 ));
 
-export default TalentDetailDialog;
+export default withStyles(styles)(TalentDetailDialog);
