@@ -6,6 +6,7 @@ import Search from '../../containers/search';
 import Map from '../../containers/map';
 import {Grid, withStyles} from '@material-ui/core';
 import Dialogs from '../../containers/dialogs';
+import Loading from './loading';
 
 const styles = {
   main: {
@@ -13,7 +14,7 @@ const styles = {
   }
 };
 
-const Layout = pure(({classes}) => (
+const Layout = pure(({classes, loading}) => (
   <div>
     <Header />
     <main className={classes.main}>
@@ -27,6 +28,7 @@ const Layout = pure(({classes}) => (
       </Grid>
     </main>
     <Dialogs />
+    <Loading load={loading} />
   </div>
 ));
 

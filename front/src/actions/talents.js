@@ -12,7 +12,7 @@ const actions = {
       request: {
         method: 'GET',
         url: '/api/talents'
-      }
+      },
     }
   }),
   select: (talent_id) => ({

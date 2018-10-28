@@ -4,6 +4,7 @@ import Site from '../../components/site';
 import {lifecycle} from 'recompose';
 
 const mapStateToProps = state => ({
+  loading: state.system.loading
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -11,7 +11,7 @@ const actions = {
         method: 'GET',
         url: '/api/floors'
       }
-    }
+    },
   }),
   select: (floor_id) => ({
     type: actionTypes.SELECT,
