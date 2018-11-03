@@ -1,63 +1,80 @@
 import React from 'react';
 import {pure} from 'recompose';
-import {Card, CardActions, CardContent, CardMedia, Grid, IconButton, Typography} from '@material-ui/core';
+import {Card, CardActions, CardContent, CardMedia, Grid, IconButton, Typography, withStyles} from '@material-ui/core';
 import SlackImage from '../../images/slack.png';
 import {MoreHoriz, MailOutline, Today, AccountCircle} from '@material-ui/icons';
 import SearchForm from '../../containers/search/form';
 
-const Search = pure(({talents, updateSearchKeyword, openTalentDetailDialog}) => (
+const styles = {
+  cards: {
+    maxWidth: '1920px',
+    paddingLeft: '15px',
+    paddingRight: '15px',
+    overflow: 'hidden',
+  },
+  '@media (max-width: 630px)': {
+    cards: {
+      maxWidth: '250px',
+    },
+  },
+  card: {
+    float: 'left',
+    maxWidth: '240px',
+    minWidth: '240px',
+    margin: '5px',
+  }
+};
+
+
+const Search = pure(({classes, talents, updateSearchKeyword, openTalentDetailDialog}) => (
   <Grid container justify="center" spacing={24}>
     <Grid item xs={12}>
       <Grid container justify="center">
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <SearchForm />
         </Grid>
       </Grid>
     </Grid>
-    <Grid item xs={12}>
-      <Grid container spacing={8}>
-        {talents.map(talent => (
-          <Grid item xs={12} sm={6} md={3} lg={3} xl={2} key={`search_talent_${talent.id}`}>
-            <Card>
-              <CardMedia component="img" src={`/api/photos/${talent.id}`} />
-              <CardContent>
-                <div style={{overflow: 'hidden'}}>
-                  <AccountCircle style={{float: 'left', width: '25px', color: talent.status.color}}/>
-                  <div style={{overflow: 'hidden'}}>
-                    <Typography variant="subheading">{talent.kana}</Typography>
-                    <Typography variant="headline" gutterBottom>{talent.name}</Typography>
-                    <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.position}</Typography>
-                    <Typography variant="subheading">{talent.department}</Typography>
-                    <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.business}</Typography>
-                  </div>
-                </div>
-              </CardContent>
-              <CardActions disableActionSpacing={true}>
-                <IconButton onClick={openTalentDetailDialog(talent.id)}>
-                  <MoreHoriz />
-                </IconButton>
-                <a href={`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(talent.mail)}&ctz=Asia%2FTokyo`} target="_blank">
-                  <IconButton>
-                    <Today />
-                  </IconButton>
-                </a>
-                <a href={'mailto:' + talent.mail} target="_blank">
-                  <IconButton>
-                    <MailOutline />
-                  </IconButton>
-                </a>
-                <a href={talent.slack} target="_blank">
-                  <IconButton>
-                    <img width="24px" height="24px" src={SlackImage} alt="slack icon"/>
-                  </IconButton>
-                </a>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Grid>
+    <div className={classes.cards}>
+      {talents.map(talent => (
+        <Card className={classes.card} key={`search_talent_${talent.id}`}>
+          <CardMedia component="img" src={`/api/photos/${talent.id}`} />
+          <CardContent>
+            <div style={{overflow: 'hidden'}}>
+              <AccountCircle style={{float: 'left', width: '25px', color: talent.status.color}}/>
+              <div style={{overflow: 'hidden'}}>
+                <Typography variant="subheading">{talent.kana}</Typography>
+                <Typography variant="headline" gutterBottom>{talent.name}</Typography>
+                <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.position}</Typography>
+                <Typography variant="subheading">{talent.department}</Typography>
+                <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.business}</Typography>
+              </div>
+            </div>
+          </CardContent>
+          <CardActions disableActionSpacing={true}>
+            <IconButton onClick={openTalentDetailDialog(talent.id)}>
+              <MoreHoriz />
+            </IconButton>
+            <a href={`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(talent.mail)}&ctz=Asia%2FTokyo`} target="_blank">
+              <IconButton>
+                <Today />
+              </IconButton>
+            </a>
+            <a href={'mailto:' + talent.mail} target="_blank">
+              <IconButton>
+                <MailOutline />
+              </IconButton>
+            </a>
+            <a href={talent.slack} target="_blank">
+              <IconButton>
+                <img width="24px" height="24px" src={SlackImage} alt="slack icon"/>
+              </IconButton>
+            </a>
+          </CardActions>
+        </Card>
+      ))}
+    </div>
   </Grid>
 ));
 
-export default Search;
+export default withStyles(styles)(Search);
