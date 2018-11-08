@@ -22,7 +22,15 @@ const styles = {
     maxWidth: '240px',
     minWidth: '240px',
     margin: '5px',
-  }
+  },
+  talentImage: {
+    minHeight: '240px',
+    maxHeight: '240px',
+  },
+  cardContent: {
+    minHeight: '200px',
+    maxHeight: '200px',
+  },
 };
 
 
@@ -38,8 +46,8 @@ const Search = pure(({classes, talents, updateSearchKeyword, openTalentDetailDia
     <div className={classes.cards}>
       {talents.map(talent => (
         <Card className={classes.card} key={`search_talent_${talent.id}`}>
-          <CardMedia component="img" src={`/api/photos/${talent.id}`} />
-          <CardContent>
+          <CardMedia className={classes.talentImage} component="img" src={`/api/photos/${talent.id}`} />
+          <CardContent className={classes.cardContent}>
             <div style={{overflow: 'hidden'}}>
               <AccountCircle style={{float: 'left', width: '25px', color: talent.status.color}}/>
               <div style={{overflow: 'hidden'}}>
