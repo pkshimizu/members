@@ -16,7 +16,7 @@ class Talent(models.Model):
     name = models.CharField(max_length=16, null=False, blank=False, verbose_name='氏名')
     kana = models.CharField(max_length=16, null=False, blank=False, verbose_name='かな')
     position = models.CharField(max_length=8, null=True, blank=True, verbose_name='役職')
-    department = models.CharField(max_length=16, null=False, blank=False, verbose_name='部署')
+    department = models.CharField(max_length=16, null=True, blank=True, verbose_name='部署')
     mail = models.CharField(max_length=256, null=False, blank=False, verbose_name='メールアドレス')
     slack = models.CharField(max_length=256, null=False, blank=False, verbose_name='Slack URL')
     phone = models.CharField(max_length=16, null=True, blank=True, verbose_name='内線番号')

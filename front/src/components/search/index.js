@@ -54,7 +54,7 @@ const Search = pure(({classes, talents, updateSearchKeyword, openTalentDetailDia
                 <Typography variant="subheading">{talent.kana}</Typography>
                 <Typography variant="headline" gutterBottom>{talent.name}</Typography>
                 <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.position}</Typography>
-                <Typography variant="subheading">{talent.department}</Typography>
+                <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.department}</Typography>
                 <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.business}</Typography>
               </div>
             </div>
