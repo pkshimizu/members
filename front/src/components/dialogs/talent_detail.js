@@ -66,7 +66,7 @@ const talentCard = (classes, talent, openSelfIntroductionEditDialog) => {
           <div style={{overflow: 'hidden'}}>
             <Typography variant="subheading">{talent.kana}</Typography>
             <Typography variant="headline" gutterBottom>{talent.name}</Typography>
-            <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.business}</Typography>
+            <Typography variant="subheading" style={{minHeight: '24px', wordWrap: 'break-word'}}>{talent.business}</Typography>
             {phoneText(talent)}
           </div>
         </div>
