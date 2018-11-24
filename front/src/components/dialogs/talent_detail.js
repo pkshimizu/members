@@ -26,6 +26,32 @@ const selfIntroductionText = (talent) => {
     .map((text, index) => (<span key={`introduction_text_${index}`}>{text}<br /></span>));
 };
 
+const departmentAndPosition = (talent) => {
+  if (talent.department && talent.position) {
+    return (
+      <div style={{minHeight: '24px'}}>
+        <Typography variant="caption" style={{display: 'inline', paddingRight: '5px'}}>{talent.department}</Typography>
+        <Typography variant="caption" style={{display: 'inline'}}>{talent.position}</Typography>
+      </div>
+    );
+  } else if (talent.department) {
+    return (
+      <div style={{minHeight: '24px'}}>
+        <Typography variant="caption" style={{display: 'inline'}}>{talent.department}</Typography>
+      </div>
+    );
+  } else if (talent.position) {
+    return (
+      <div style={{minHeight: '24px'}}>
+        <Typography variant="caption" style={{display: 'inline'}}>{talent.position}</Typography>
+      </div>
+    );
+  }
+  return (
+    <div style={{minHeight: '24px'}}></div>
+  );
+};
+
 const talentCard = (classes, talent, openSelfIntroductionEditDialog) => {
   if(!talent || !talent.status) {
     return (<Card/>);
@@ -34,13 +60,12 @@ const talentCard = (classes, talent, openSelfIntroductionEditDialog) => {
     <Card>
       <CardMedia component="img" src={`/api/photos/${talent.id}`} />
       <CardContent>
+        {departmentAndPosition(talent)}
         <div style={{overflow: 'hidden'}}>
           <AccountCircle style={{float: 'left', width: '25px', color: talent.status.color}}/>
           <div style={{overflow: 'hidden'}}>
             <Typography variant="subheading">{talent.kana}</Typography>
             <Typography variant="headline" gutterBottom>{talent.name}</Typography>
-            <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.position}</Typography>
-            <Typography variant="subheading" gutterBottom>{talent.department}</Typography>
             <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.business}</Typography>
             {phoneText(talent)}
           </div>

@@ -28,11 +28,36 @@ const styles = {
     maxHeight: '240px',
   },
   cardContent: {
-    minHeight: '200px',
-    maxHeight: '200px',
+    minHeight: '120px',
+    maxHeight: '120px',
   },
 };
 
+const departmentAndPosition = (talent) => {
+  if (talent.department && talent.position) {
+    return (
+      <div style={{minHeight: '24px'}}>
+        <Typography variant="caption" style={{display: 'inline', paddingRight: '5px'}}>{talent.department}</Typography>
+        <Typography variant="caption" style={{display: 'inline'}}>{talent.position}</Typography>
+      </div>
+    );
+  } else if (talent.department) {
+    return (
+      <div style={{minHeight: '24px'}}>
+        <Typography variant="caption" style={{display: 'inline'}}>{talent.department}</Typography>
+      </div>
+    );
+  } else if (talent.position) {
+    return (
+      <div style={{minHeight: '24px'}}>
+        <Typography variant="caption" style={{display: 'inline'}}>{talent.position}</Typography>
+      </div>
+    );
+  }
+  return (
+    <div style={{minHeight: '24px'}}/>
+  );
+};
 
 const Search = pure(({classes, talents, updateSearchKeyword, openTalentDetailDialog}) => (
   <Grid container justify="center" spacing={24}>
@@ -48,13 +73,12 @@ const Search = pure(({classes, talents, updateSearchKeyword, openTalentDetailDia
         <Card className={classes.card} key={`search_talent_${talent.id}`}>
           <CardMedia className={classes.talentImage} component="img" src={`/api/photos/${talent.id}`} />
           <CardContent className={classes.cardContent}>
+            {departmentAndPosition(talent)}
             <div style={{overflow: 'hidden'}}>
               <AccountCircle style={{float: 'left', width: '25px', color: talent.status.color}}/>
               <div style={{overflow: 'hidden'}}>
                 <Typography variant="subheading">{talent.kana}</Typography>
                 <Typography variant="headline" gutterBottom>{talent.name}</Typography>
-                <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.position}</Typography>
-                <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.department}</Typography>
                 <Typography variant="subheading" style={{minHeight: '24px'}}>{talent.business}</Typography>
               </div>
             </div>
