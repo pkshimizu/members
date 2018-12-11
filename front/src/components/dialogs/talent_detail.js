@@ -51,6 +51,42 @@ const departmentAndPosition = (talent) => {
     <div style={{minHeight: '24px'}}></div>
   );
 };
+const scheduleButton = (talent) => {
+  if (talent.mail) {
+    return (
+      <a href={`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(talent.mail)}&ctz=Asia%2FTokyo`} target="_blank">
+        <IconButton>
+          <Today />
+        </IconButton>
+      </a>
+    );
+  }
+  return (<div/>);
+};
+const mailButton = (talent) => {
+  if (talent.mail) {
+    return (
+      <a href={'mailto:' + talent.mail} target="_blank">
+        <IconButton>
+          <MailOutline />
+        </IconButton>
+      </a>
+    );
+  }
+  return (<div/>);
+};
+const slackButton = (talent) => {
+  if (talent.slack) {
+    return (
+      <a href={talent.slack} target="_blank">
+        <IconButton>
+          <img width="24px" height="24px" src={SlackImage} alt="slack icon"/>
+        </IconButton>
+      </a>
+    );
+  }
+  return (<div/>);
+};
 
 const talentCard = (classes, talent, openSelfIntroductionEditDialog) => {
   if(!talent || !talent.status) {
@@ -80,21 +116,9 @@ const talentCard = (classes, talent, openSelfIntroductionEditDialog) => {
             <Edit/>
           </IconButton>
         </Paper>
-        <a href={`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(talent.mail)}&ctz=Asia%2FTokyo`} target="_blank">
-          <IconButton>
-            <Today />
-          </IconButton>
-        </a>
-        <a href={'mailto:' + talent.mail} target="_blank">
-          <IconButton>
-            <MailOutline />
-          </IconButton>
-        </a>
-        <a href={talent.slack} target="_blank">
-          <IconButton>
-            <img width="24px" height="24px" src={SlackImage} alt="slack icon"/>
-          </IconButton>
-        </a>
+        {scheduleButton(talent)}
+        {mailButton(talent)}
+        {slackButton(talent)}
       </CardContent>
     </Card>
   )
