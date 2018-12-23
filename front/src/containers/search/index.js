@@ -8,8 +8,10 @@ import {lifecycle} from 'recompose';
 const filter = (talents, keyword) => {
   if (!keyword) return talents;
   return _.filter(talents, (talent) => {
+    const hiragana = talent.kana.replace(/[ァ-ン]/g, s => String.fromCharCode(s.charCodeAt(0) - 0x60));
     return _.includes(talent.name, keyword)
           || _.includes(talent.kana, keyword)
+          || _.includes(hiragana, keyword)
           || _.includes(talent.department, keyword);
   });
 };
