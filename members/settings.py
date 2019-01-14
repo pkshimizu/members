@@ -26,7 +26,7 @@ SECRET_KEY = '@&9kwu_o=!3e(+)om9(!c1=*c4fl1)&ai=pjtd4cmejj)7=bs8'
 DEBUG = True
 
 ALLOWED_HOSTS = ['10.250.2.62', 'members.compass-edu.meguro', 'localhost']
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'talents',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 # For develop
