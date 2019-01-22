@@ -24,9 +24,10 @@ const SelfIntroductionEditForm = pure(({talent, onClose, handleSubmit}) => (
             autoFocus
             placeholder="自己紹介文を入力してください"
             defaultValue={talent.self_introduction}
+            style={{minWidth: "500px"}}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} style={{display: 'none'}}>
           <Field component={TextInput} name="password" fullWidth type="password" label="パスワード"/>
         </Grid>
       </Grid>
