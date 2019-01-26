@@ -15,7 +15,7 @@ const Header = pure(({classes, history}) => (
     <AppBar position="fixed">
       <Toolbar>
         <Typography variant="title" color="inherit" className={classes.flex}>
-                  COMPASS members（仮）
+                  社員検索
         </Typography>
         <Button color="inherit" onClick={() => history.push('/')}>
                   Search
