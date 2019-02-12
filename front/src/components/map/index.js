@@ -22,9 +22,10 @@ const styles = {
 
 const select_color = (talent, keyword) => {
   if (!talent) return '#ffe499';
+  const hiragana = talent.kana.replace(/[ァ-ン]/g, s => String.fromCharCode(s.charCodeAt(0) - 0x60));
   if (keyword) {
     if (_.includes(talent.name, keyword)
-        || _.includes(talent.kana, keyword)
+        || _.includes(hiragana, keyword)
         || _.includes(talent.department, keyword))
       return '#ff9277';
   }

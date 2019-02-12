@@ -17,13 +17,19 @@ const updateSelfIntroduction = (talents, action) => {
   });
 };
 
+const sortTalents = (talents) => {
+  return _.sortBy(talents, talent => {
+    return talent.kana.replace(/[ァ-ン]/g, s => String.fromCharCode(s.charCodeAt(0) - 0x60));
+  });
+};
+
 export default (state = initState, action) => {
   if (!action.type.startsWith('TALENTS_')) {
     return state;
   }
   switch (action.type) {
   case success(actionTypes.LOAD):
-    return { ...state, talents: action.payload.data };
+    return { ...state, talents: sortTalents(action.payload.data) };
   case actionTypes.SELECT:
     return { ...state, selected_talent: action.payload.talent_id };
   case actionTypes.SEARCH:
