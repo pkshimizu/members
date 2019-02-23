@@ -115,8 +115,9 @@ const Search = pure(({
     </Grid>
     <TalentPopover/>
     <div className={classes.cards}>
-      {talents.map(talent => (
+      {talents.map((talent, index) => (
         <Card
+          id={`talent-card-${index}`}
           className={classes.card}
           key={`search_talent_${talent.id}`}
           onMouseEnter={openTalentPopover(talent.id)}

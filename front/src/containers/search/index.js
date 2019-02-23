@@ -17,7 +17,7 @@ const filter = (talents, keyword) => {
 };
 
 const findCardElement = (element) => {
-  if (_.find(element.classList, (className) => _.startsWith(className, 'MuiCard-root'))) {
+  if (_.startsWith(element.id, 'talent-card-')) {
     return element;
   }
   return findCardElement(element.parentElement);
