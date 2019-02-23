@@ -16,8 +16,17 @@ const filter = (talents, keyword) => {
   });
 };
 
+const findCardElement = (element) => {
+  if (_.find(element.classList, (className) => _.startsWith(className, 'MuiCard-root'))) {
+    return element;
+  }
+  return findCardElement(element.parentElement);
+};
+
 const mapStateToProps = state => ({
-  talents: filter(state.talents.talents, state.talents.search_keyword)
+  talents: filter(state.talents.talents, state.talents.search_keyword),
+  selected_talent: state.talents.talents[
+    _.findIndex(state.talents.talents, {id: state.talents.selected_talent})] || {}
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -27,6 +36,15 @@ const mapDispatchToProps = dispatch => ({
   openTalentDetailDialog: (talent_id) => () => {
     dispatch(talents.select(talent_id));
     dispatch(dialogs.open('talent_detail', true));
+  },
+  openTalentPopover: (talent_id) => (e) => {
+    const card = findCardElement(e.target);
+    const rect = card.getBoundingClientRect();
+    dispatch(talents.select(talent_id));
+    dispatch(dialogs.open('talent_popover', true, rect.y + rect.height - 10, rect.x));
+  },
+  closeTalentPopover: (talent_id) => () => {
+    dispatch(dialogs.open('talent_popover', false));
   }
 });
 

@@ -4,6 +4,7 @@ import {Card, CardActions, CardContent, CardMedia, Grid, IconButton, Typography,
 import SlackImage from '../../images/slack.png';
 import {MoreHoriz, MailOutline, Today, AccountCircle} from '@material-ui/icons';
 import SearchForm from '../../containers/search/form';
+import TalentPopover from "../../containers/search/popover";
 
 const styles = {
   cards: {
@@ -96,7 +97,14 @@ const slackButton = (talent) => {
   return (<div/>);
 };
 
-const Search = pure(({classes, talents, updateSearchKeyword, openTalentDetailDialog}) => (
+const Search = pure(({
+  classes,
+  talents,
+  updateSearchKeyword,
+  openTalentDetailDialog,
+  openTalentPopover,
+  closeTalentPopover
+}) => (
   <Grid container justify="center" spacing={24}>
     <Grid item xs={12}>
       <Grid container justify="center">
@@ -105,9 +113,15 @@ const Search = pure(({classes, talents, updateSearchKeyword, openTalentDetailDia
         </Grid>
       </Grid>
     </Grid>
+    <TalentPopover/>
     <div className={classes.cards}>
       {talents.map(talent => (
-        <Card className={classes.card} key={`search_talent_${talent.id}`}>
+        <Card
+          className={classes.card}
+          key={`search_talent_${talent.id}`}
+          onMouseEnter={openTalentPopover(talent.id)}
+          onMouseLeave={closeTalentPopover()}
+        >
           <CardMedia className={classes.talentImage} component="img" src={`/api/photos/${talent.id}`} />
           <CardContent className={classes.cardContent}>
             {departmentAndPosition(talent)}

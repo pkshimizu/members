@@ -21,7 +21,7 @@ const phoneText = (talent) => {
   return (<Typography variant="subheading" gutterBottom></Typography>);
 };
 
-const selfIntroductionText = (talent) => {
+export const selfIntroductionText = (talent) => {
   return _.split(talent.self_introduction, /\n/)
     .map((text, index) => (<span key={`introduction_text_${index}`}>{text}<br /></span>));
 };

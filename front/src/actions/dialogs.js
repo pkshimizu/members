@@ -3,11 +3,13 @@ export const actionTypes = {
 };
 
 const actions = {
-  open: (name, open) => ({
+  open: (name, open, top = 0, left = 0) => ({
     type: actionTypes.OPEN,
     payload: {
       open,
       name,
+      top,
+      left,
     }
   })
 };
