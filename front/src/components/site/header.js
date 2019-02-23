@@ -15,13 +15,16 @@ const Header = pure(({classes, history}) => (
     <AppBar position="fixed">
       <Toolbar>
         <Typography variant="title" color="inherit" className={classes.flex}>
-                  社員検索
+          社員検索
         </Typography>
         <Button color="inherit" onClick={() => history.push('/')}>
-                  Search
+          顔写真
         </Button>
         <Button color="inherit" onClick={() => history.push('/map')}>
-                  Map
+          座席表
+        </Button>
+        <Button color="inherit" href="/manual.pdf" target="_blank">
+          ヘルプ
         </Button>
         <IconButton color="inherit"><AccountCircle /></IconButton>
       </Toolbar>
